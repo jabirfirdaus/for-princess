@@ -1,77 +1,625 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minta Maaf Untuk Kamu 💕</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maaf Ya Princess 🐱💕</title>
+  <meta name="description" content="Sebuah permintaan maaf yang tulus dengan elemen kucing lucu dan desain kawaii yang menggemaskan." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-deep:    #2d2d44;
+      --bg-mid:     #3d3d54;
+      --bg-card:    #e8d7f1;
+      --accent-1:   #e94560;
+      --accent-2:   #f5a7b8;
+      --accent-3:   #8e6ba3;
+      --accent-4:   #b5a3c4;
+      --gray-1:     #6b6b85;
+      --gray-2:     #8a8a9a;
+      --gray-3:     #3d3d50;
+      --white:      #ffffff;
+      --card-shadow: rgba(0,0,0,0.15);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg-deep);
+      font-family: 'Nunito', sans-serif;
+      color: var(--gray-3);
+      overflow-x: hidden;
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E🐾%3C/text%3E%3C/svg%3E") 8 8, auto;
+      position: relative;
+    }
+
+    /* ── ANIMATED BACKGROUND ── */
+    .bg-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .bg-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.25;
+      animation: drift 12s ease-in-out infinite alternate;
+    }
+
+    .bg-orb:nth-child(1) { width: 600px; height: 600px; background: #e94560; top: -200px; left: -150px; animation-delay: 0s; }
+    .bg-orb:nth-child(2) { width: 500px; height: 500px; background: #8e6ba3; top: 40%; right: -200px; animation-delay: -4s; animation-duration: 14s; }
+    .bg-orb:nth-child(3) { width: 400px; height: 400px; background: #f5a7b8; bottom: -150px; left: 30%; animation-delay: -7s; animation-duration: 10s; }
+    .bg-orb:nth-child(4) { width: 350px; height: 350px; background: #b5a3c4; top: 20%; left: 40%; animation-delay: -2s; animation-duration: 16s; }
+
+    @keyframes drift {
+      0%   { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(40px, 60px) scale(1.15); }
+    }
+
+    /* ── FLOATING PARTICLES ── */
+    .particles { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
+
+    .particle {
+      position: absolute;
+      font-size: 1.3rem;
+      animation: floatUp linear infinite;
+      opacity: 0;
+    }
+
+    @keyframes floatUp {
+      0%   { transform: translateY(0) rotate(0deg) scale(0.5); opacity: 0; }
+      10%  { opacity: 0.9; }
+      90%  { opacity: 0.7; }
+      100% { transform: translateY(-110vh) rotate(360deg) scale(1.2); opacity: 0; }
+    }
+
+    /* ── GRID/STARS OVERLAY ── */
+    .stars {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1px),
+        radial-gradient(circle, rgba(233,69,96,0.08) 1px, transparent 1px);
+      background-size: 60px 60px, 30px 30px;
+      background-position: 0 0, 15px 15px;
+    }
+
+    /* ── MAIN LAYOUT ── */
+    .page {
+      position: relative;
+      z-index: 10;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 2px solid rgba(233,69,96,0.2);
+      border-radius: 32px;
+      padding: 3rem 2.5rem 3.5rem;
+      max-width: 560px;
+      width: 100%;
+      text-align: center;
+      box-shadow:
+        0 8px 32px rgba(0,0,0,0.2),
+        0 0 0 1px rgba(255,255,255,0.5);
+      animation: cardIn 0.9s cubic-bezier(.175,.885,.32,1.275) both;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 60%);
+      pointer-events: none;
+      border-radius: 32px;
+    }
+
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(60px) scale(0.88); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    /* ── CAT HEADER ── */
+    .cat-hero {
+      font-size: 5rem;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      animation: catBounce 2s ease-in-out infinite;
+      display: block;
+      filter: drop-shadow(0 4px 16px rgba(233,69,96,0.3));
+    }
+
+    @keyframes catBounce {
+      0%, 100% { transform: translateY(0) rotate(-3deg); }
+      50%       { transform: translateY(-12px) rotate(3deg); }
+    }
+
+    /* ── TITLE ── */
+    .title-sub {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent-3);
+      margin-bottom: 0.4rem;
+      animation: fadeUp 0.7s 0.3s both;
+    }
+
+    .title-main {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(1.7rem, 5vw, 2.4rem);
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.25;
+      margin-bottom: 0.3rem;
+      animation: fadeUp 0.7s 0.5s both;
+    }
+
+    .heart-row {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.7s 0.65s both;
+      letter-spacing: 0.2em;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    /* ── APOLOGY CARD ── */
+    .apology-box {
+      background: rgba(255,255,255,0.7);
+      border: 2px solid var(--accent-2);
+      border-radius: 20px;
+      padding: 1.5rem 1.4rem;
+      margin-bottom: 1.8rem;
+      position: relative;
+      animation: fadeUp 0.7s 0.8s both;
+    }
+
+    .apology-box::before {
+      content: '🐾';
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.6rem;
+      filter: drop-shadow(0 2px 8px rgba(233,69,96,0.3));
+    }
+
+    .apology-text {
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(0.88rem, 2.5vw, 1rem);
+      font-weight: 600;
+      color: var(--gray-3);
+      line-height: 1.75;
+    }
+
+    .apology-text .name-highlight {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.15em;
+      background: linear-gradient(135deg, #e94560, #8e6ba3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+    }
+
+    /* ── QUESTION ── */
+    .question {
+      font-family: 'Quicksand', sans-serif;
+      font-size: clamp(1rem, 3vw, 1.25rem);
+      font-weight: 700;
+      color: var(--accent-3);
+      margin-bottom: 1.6rem;
+      animation: fadeUp 0.7s 1s both;
+    }
+
+    /* ── BUTTONS ── */
+    .btn-row {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeUp 0.7s 1.15s both;
+      position: relative;
+    }
+
+    .btn {
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 900;
+      padding: 0.75rem 2rem;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.18s, box-shadow 0.18s;
+      letter-spacing: 0.05em;
+    }
+
+    .btn-yes {
+      background: linear-gradient(135deg, #e94560, #f5a7b8);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(233,69,96,0.4), 0 0 0 0 rgba(233,69,96,0.3);
+      animation: yesGlow 2s ease-in-out infinite;
+    }
+
+    .btn-yes:hover { transform: scale(1.08) translateY(-2px); box-shadow: 0 8px 30px rgba(233,69,96,0.5); }
+    .btn-yes:active { transform: scale(0.97); }
+
+    @keyframes yesGlow {
+      0%, 100% { box-shadow: 0 4px 20px rgba(233,69,96,0.4), 0 0 0 0 rgba(233,69,96,0.3); }
+      50%       { box-shadow: 0 4px 30px rgba(233,69,96,0.6), 0 0 0 8px rgba(233,69,96,0); }
+    }
+
+    .btn-no {
+      background: linear-gradient(135deg, #b5a3c4, #8e6ba3);
+      border: none;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      position: fixed !important;
+      z-index: 9999;
+      font-weight: 900;
+    }
+
+    .btn-no:hover { 
+      transform: scale(1.05);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+    }
+
+    /* NO button initial — inside card */
+    #btn-no-wrap {
+      display: inline-block;
+    }
+    #btn-no {
+      position: relative;
+    }
+
+    /* ── THANK YOU STATE ── */
+    .thankyou-section {
+      display: none;
+      animation: thankIn 0.8s cubic-bezier(.175,.885,.32,1.275) both;
+    }
+
+    @keyframes thankIn {
+      from { opacity: 0; transform: scale(0.7) rotate(-8deg); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    .thankyou-emoji {
+      font-size: 4.5rem;
+      display: block;
+      margin-bottom: 1rem;
+      animation: spinIn 0.8s cubic-bezier(.175,.885,.32,1.275) both;
+    }
+
+    @keyframes spinIn {
+      from { transform: rotate(-30deg) scale(0.5); opacity: 0; }
+      to   { transform: none; opacity: 1; }
+    }
+
+    .thankyou-title {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(1.5rem, 5vw, 2.2rem);
+      background: linear-gradient(135deg, #e94560, #8e6ba3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.8rem;
+    }
+
+    .thankyou-msg {
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(0.88rem, 2.5vw, 1rem);
+      font-weight: 600;
+      color: var(--gray-3);
+      line-height: 1.75;
+    }
+
+    .thankyou-cats {
+      font-size: 2rem;
+      margin-top: 1.2rem;
+      letter-spacing: 0.3em;
+      animation: catRow 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes catRow {
+      from { transform: translateX(-6px); }
+      to   { transform: translateX(6px); }
+    }
+
+    /* ── CONFETTI CANVAS ── */
+    #confetti-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 9990;
+      pointer-events: none;
+      display: none;
+    }
+
+    /* ── DECORATIVE CORNER CATS ── */
+    .corner-cat {
+      position: fixed;
+      font-size: 2.2rem;
+      opacity: 0.45;
+      pointer-events: none;
+      z-index: 5;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2));
+    }
+
+    .corner-cat.tl { top: 1rem; left: 1rem; animation: wiggle 3s ease-in-out infinite; }
+    .corner-cat.tr { top: 1rem; right: 1rem; animation: wiggle 3s 1s ease-in-out infinite; transform: scaleX(-1); }
+    .corner-cat.bl { bottom: 1rem; left: 1rem; animation: wiggle 3s 2s ease-in-out infinite; }
+    .corner-cat.br { bottom: 1rem; right: 1rem; animation: wiggle 3s 1.5s ease-in-out infinite; transform: scaleX(-1); }
+
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(-8deg) scale(1); }
+      50%       { transform: rotate(8deg) scale(1.08); }
+    }
+    .corner-cat.tr { animation: wiggleMirror 3s 1s ease-in-out infinite; }
+    .corner-cat.br { animation: wiggleMirror 3s 1.5s ease-in-out infinite; }
+    @keyframes wiggleMirror {
+      0%, 100% { transform: scaleX(-1) rotate(-8deg) scale(1); }
+      50%       { transform: scaleX(-1) rotate(8deg) scale(1.08); }
+    }
+
+    /* ── PAWS DIVIDER ── */
+    .paw-divider { font-size: 0.9rem; letter-spacing: 0.8em; color: rgba(0,0,0,0.15); margin: 1.2rem 0; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 480px) {
+      .card { padding: 2.2rem 1.4rem 2.8rem; }
+      .cat-hero { font-size: 4rem; }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Cute Cat Elements -->
-        <div class="cat cat-top-left">
-            <div class="cat-head">
-                <div class="cat-ear ear-left"></div>
-                <div class="cat-ear ear-right"></div>
-                <div class="cat-eye eye-left"></div>
-                <div class="cat-eye eye-right"></div>
-                <div class="cat-nose"></div>
-                <div class="cat-mouth"></div>
-            </div>
+
+  <!-- Background -->
+  <div class="bg-layer">
+    <div class="bg-orb"></div>
+    <div class="bg-orb"></div>
+    <div class="bg-orb"></div>
+    <div class="bg-orb"></div>
+  </div>
+  <div class="stars"></div>
+  <div class="particles" id="particles"></div>
+
+  <!-- Corner decoration cats -->
+  <span class="corner-cat tl">🐱</span>
+  <span class="corner-cat tr">🐱</span>
+  <span class="corner-cat bl">🐈</span>
+  <span class="corner-cat br">🐈</span>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Main Page -->
+  <div class="page">
+    <div class="card" id="main-card">
+
+      <!-- APOLOGY SECTION -->
+      <div id="apology-section">
+        <span class="cat-hero">🙀</span>
+        <p class="title-sub">~ sebuah permintaan maaf ~</p>
+        <h1 class="title-main">Maafin Aku Ya, Princess! 💕</h1>
+        <div class="heart-row">💗 🐾 💗 🐾 💗</div>
+
+        <div class="apology-box">
+          <p class="apology-text">
+            <span class="name-highlight">princess bilqis inayatuz zahwa</span>,
+            <br /><br />
+            andika minta maaf karena membuat princess yang
+            <strong>imut</strong>, <strong>lucu</strong>, <strong>cantik</strong>,
+            <strong>pinter</strong>, <strong>tinggi</strong>, <strong>mancung</strong>,
+            <strong>wangi</strong>, <strong>baik hati</strong>, dan
+            <strong>tidak sombong</strong> menjadi kesal dan nangis 🥺
+            <br /><br />
+            mohon dimaafkan yaa 🤗🤗
+          </p>
         </div>
 
-        <div class="cat cat-top-right">
-            <div class="cat-head">
-                <div class="cat-ear ear-left"></div>
-                <div class="cat-ear ear-right"></div>
-                <div class="cat-eye eye-left"></div>
-                <div class="cat-eye eye-right"></div>
-                <div class="cat-nose"></div>
-                <div class="cat-mouth"></div>
-            </div>
+        <div class="paw-divider">🐾 🐾 🐾</div>
+
+        <p class="question">dimaafkan tidak? 🥺✨</p>
+
+        <div class="btn-row">
+          <button class="btn btn-yes" id="btn-yes" onclick="handleYes()">
+            IYAA 🥰
+          </button>
+          <span id="btn-no-wrap">
+            <button class="btn btn-no" id="btn-no" onmousedown="escapeButton(event)" ontouchstart="escapeButton(event)">
+              TIDAK 😾
+            </button>
+          </span>
         </div>
+      </div>
 
-        <!-- Main Content -->
-        <div class="content">
-            <div class="heart-decoration">💕</div>
-            
-            <h1 class="title">Minta Maaf Nih... 🥺</h1>
-            
-            <div class="message-box">
-                <p class="apology-message" id="message">
-                    Princess Bilqis Inayatuz Zahwa,<br><br>
-                    Andika minta maaf karena membuat princess yang imut lucu cantik pinter tinggi mancung wangi baik hati dan tidak sombong menjadi kesal dan nangis. 😭<br><br>
-                    Mohon dimaafkan yaa 🤗🤗
-                </p>
-            </div>
+      <!-- THANK YOU SECTION -->
+      <div class="thankyou-section" id="thankyou-section">
+        <span class="thankyou-emoji">🎉</span>
+        <h2 class="thankyou-title">Makasiii Princess! 💖</h2>
+        <div class="paw-divider">🐾 🐾 🐾</div>
+        <p class="thankyou-msg">
+          Terimakasih banyak ya <span class="name-highlight">princess bilqis</span> udah mau maafin andika 🥹💕
+          <br/><br/>
+          Andika berjanji ga akan buat princess kesal lagi~
+          Kamu emang yang paling baik hati di seluruh jagat semesta raya! 🌸✨
+          <br /><br />
+          Andika sayang princess! 🤍🐱🤍
+        </p>
+        <div class="thankyou-cats">🐱 💕 🐱</div>
+      </div>
 
-            <div class="question">
-                <h2>Dimaafkan tidak? 🥺💕</h2>
-            </div>
-
-            <!-- Buttons -->
-            <div class="button-container">
-                <button class="btn btn-yes" id="yesBtn">IYAA ✨</button>
-                <button class="btn btn-no" id="noBtn">TIDAK 😤</button>
-            </div>
-        </div>
-
-        <!-- Cute Cat Bottom -->
-        <div class="cat cat-bottom">
-            <div class="cat-head">
-                <div class="cat-ear ear-left"></div>
-                <div class="cat-ear ear-right"></div>
-                <div class="cat-eye eye-left"></div>
-                <div class="cat-eye eye-right"></div>
-                <div class="cat-nose"></div>
-                <div class="cat-mouth"></div>
-            </div>
-        </div>
-
-        <!-- Confetti Container -->
-        <div id="confetti-container"></div>
     </div>
+  </div>
 
-    <script src="script.js"></script>
+  <script>
+    /* ── PARTICLES ── */
+    const symbols = ['🐾','💕','✨','🌸','💗','⭐','🌟','💖','🎀','🐱','🐈','💝','🌷'];
+    const container = document.getElementById('particles');
+
+    function spawnParticle() {
+      const el = document.createElement('div');
+      el.className = 'particle';
+      el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      el.style.cssText = `
+        left: ${Math.random() * 100}vw;
+        bottom: -60px;
+        font-size: ${0.8 + Math.random() * 1.2}rem;
+        animation-duration: ${5 + Math.random() * 8}s;
+        animation-delay: ${Math.random() * 3}s;
+      `;
+      container.appendChild(el);
+      el.addEventListener('animationend', () => el.remove());
+    }
+
+    setInterval(spawnParticle, 700);
+    for (let i = 0; i < 8; i++) setTimeout(spawnParticle, i * 200);
+
+    /* ── ESCAPE BUTTON ── */
+    let noBtn = document.getElementById('btn-no');
+    let isFixed = false;
+
+    function escapeButton(e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const margin = 20;
+      const bw = noBtn.offsetWidth || 120;
+      const bh = noBtn.offsetHeight || 48;
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+
+      // Switch to fixed once
+      if (!isFixed) {
+        // Get current position before switching
+        const rect = noBtn.getBoundingClientRect();
+        noBtn.style.position = 'fixed';
+        noBtn.style.left = rect.left + 'px';
+        noBtn.style.top = rect.top + 'px';
+        noBtn.style.right = 'auto';
+        noBtn.style.bottom = 'auto';
+        isFixed = true;
+        // Remove from wrapper
+        document.body.appendChild(noBtn);
+        // Hide placeholder
+        document.getElementById('btn-no-wrap').style.visibility = 'hidden';
+        document.getElementById('btn-no-wrap').style.width = bw + 'px';
+        document.getElementById('btn-no-wrap').style.height = bh + 'px';
+      }
+
+      // Pick a random safe position far from current
+      let newX, newY;
+      const curX = parseFloat(noBtn.style.left);
+      const curY = parseFloat(noBtn.style.top);
+
+      for (let attempt = 0; attempt < 20; attempt++) {
+        newX = margin + Math.random() * (vw - bw - 2 * margin);
+        newY = margin + Math.random() * (vh - bh - 2 * margin);
+        const dist = Math.hypot(newX - curX, newY - curY);
+        if (dist > 180) break;
+      }
+
+      noBtn.style.transition = 'left 0.22s cubic-bezier(.175,.885,.32,1.275), top 0.22s cubic-bezier(.175,.885,.32,1.275)';
+      noBtn.style.left = newX + 'px';
+      noBtn.style.top  = newY + 'px';
+    }
+
+    /* ── YES HANDLER ── */
+    function handleYes() {
+      // Hide no button
+      if (noBtn.parentNode) noBtn.parentNode.removeChild(noBtn);
+
+      // Show thankyou
+      document.getElementById('apology-section').style.display = 'none';
+      const ty = document.getElementById('thankyou-section');
+      ty.style.display = 'block';
+
+      // Change cat hero
+      document.querySelector('.cat-hero') && (document.querySelector('.cat-hero').textContent = '😻');
+
+      // Trigger confetti
+      launchConfetti();
+    }
+
+    /* ── CONFETTI ── */
+    function launchConfetti() {
+      const canvas = document.getElementById('confetti-canvas');
+      canvas.style.display = 'block';
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      const ctx = canvas.getContext('2d');
+
+      const colors = ['#e94560','#f5a7b8','#8e6ba3','#b5a3c4','#fff','#ffd6e0','#ffb3c6'];
+      const pieces = Array.from({length: 180}, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * -canvas.height,
+        w: 6 + Math.random() * 10,
+        h: 10 + Math.random() * 16,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        rot: Math.random() * Math.PI * 2,
+        rotSpeed: (Math.random() - 0.5) * 0.15,
+        vy: 2 + Math.random() * 4,
+        vx: (Math.random() - 0.5) * 2,
+        opacity: 0.9 + Math.random() * 0.1,
+      }));
+
+      let frame = 0;
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let alive = false;
+        for (const p of pieces) {
+          p.y += p.vy;
+          p.x += p.vx;
+          p.rot += p.rotSpeed;
+          if (p.y < canvas.height + 30) alive = true;
+          ctx.save();
+          ctx.globalAlpha = p.opacity;
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rot);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          ctx.restore();
+        }
+        frame++;
+        if (alive && frame < 300) requestAnimationFrame(draw);
+        else canvas.style.display = 'none';
+      }
+      draw();
+    }
+
+    /* ── RESIZE ── */
+    window.addEventListener('resize', () => {
+      if (!isFixed || !noBtn) return;
+      const bw = noBtn.offsetWidth;
+      const bh = noBtn.offsetHeight;
+      const x = Math.min(parseFloat(noBtn.style.left), window.innerWidth - bw - 20);
+      const y = Math.min(parseFloat(noBtn.style.top), window.innerHeight - bh - 20);
+      noBtn.style.left = Math.max(20, x) + 'px';
+      noBtn.style.top  = Math.max(20, y) + 'px';
+    });
+  </script>
 </body>
 </html>
